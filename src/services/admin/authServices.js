@@ -1,26 +1,10 @@
-import { BASE_URL } from "../config/url"
+import { BASE_URL } from "../../config/url"
 
-class AuthServices {
+class AuthServicesAdmin {
 
     login = (body) => {
 
-        return fetch(BASE_URL + "auth/login", {
-            headers: {
-                "Accept": "*/*",
-                "Content-Type": "application/json"
-            },
-            method: "POST",
-            body: JSON.stringify(body)
-        })
-            .then(ress => ress.json())
-            .then(ressJson => {
-                return ressJson;
-            })
-    }
-
-    register = (body) => {
-
-        return fetch(BASE_URL + "auth/register", {
+        return fetch(BASE_URL + "auth/admin/login", {
             headers: {
                 "Accept": "*/*",
                 "Content-Type": "application/json"
@@ -37,7 +21,7 @@ class AuthServices {
     update = (body) => {
         var token = localStorage.getItem('token');
 
-        return fetch(BASE_URL + "auth/update", {
+        return fetch(BASE_URL + "auth/admin/update", {
             headers: {
                 "Accept": "*/*",
                 "Content-Type": "application/json",
@@ -51,10 +35,11 @@ class AuthServices {
                 return ressJson;
             })
     }
+
     logout = () => {
         var token = localStorage.getItem('token');
 
-        return fetch(BASE_URL + "auth/logout", {
+        return fetch(BASE_URL + "auth/admin/logout", {
             headers: {
                 "Accept": "*/*",
                 "Content-Type": "application/json",
@@ -71,4 +56,4 @@ class AuthServices {
 
 }
 
-export default AuthServices;
+export default AuthServicesAdmin;

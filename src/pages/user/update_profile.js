@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Navigation from '../components/navigation';
+import Navigation from '../../components/user/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import AuthServices from '../services/authServices';
+import AuthServices from '../../services/user/authServices';
 
 
 function UpdateProfile() {

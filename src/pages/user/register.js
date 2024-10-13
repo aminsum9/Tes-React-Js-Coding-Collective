@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AuthServices from '../services/authServices';
+import AuthServices from '../../services/user/authServices';
 
 function Register(){
     var [name, setName] = React.useState('');

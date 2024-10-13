@@ -1,17 +1,19 @@
 import * as React from 'react';
-import AuthServices from '../services/authServices';
+import AuthServices from '../../services/user/authServices';
 
-function Navigation() {
+function NavigationAdmin() {
 
     return (
         <div className='flex-col bg-[#4287f5] justify-center w-1/5 text-center' >
             <div className='w-full flex-col items-start justify-start text-start pt-4 ps-3' >
+                <h3 className='text-4xl font-bold text-white' >Admin</h3>
                 <h3 className='text-4xl font-bold text-white' >Employee</h3>
                 <h3 className='text-4xl font-bold text-white' >Attendance</h3>
             </div>
             <div className='w-full flex-col items-start justify-start text-start pt-4 px-3'  >
                 <ItemNav title="Dashboard" route="/" />
                 <ItemNav title="Attendance History" route="/attendance-history" />
+                <ItemNav title="Report" route="/report" />
                 <ItemNav title="Update Profile" route="/update-profile" />
                 <LogOutButton />
             </div>
@@ -55,4 +57,4 @@ function LogOutButton() {
     )
 }
 
-export default Navigation;
+export default NavigationAdmin;

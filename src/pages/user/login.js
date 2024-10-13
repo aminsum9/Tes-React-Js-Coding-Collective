@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AuthServices from '../services/authServices';
+import AuthServices from '../../services/user/authServices';
 
 function Login() {
     var [email, setEmail] = React.useState('');
@@ -38,7 +38,7 @@ function Login() {
                         className="w-full px-6 py-2 min-w-[120px] text-center text-white bg-violet-600 border border-violet-600 rounded active:text-violet-500 hover:bg-transparent hover:text-violet-600 focus:outline-none focus:ring">
                         Sign In
                     </button>
-                    <p className='text-left mt-3'>have no any account yet? <span className='ml-1' ><a className='text-yellow-600' href="/register" >sign up</a></span></p>
+                    <p className='text-left mt-3'>have no any account yet? <span className='ml-1' ><a className='text-yellow-600' href="/register" >sign up</a></span> or you are an Admin <span className='ml-1' ><a className='text-yellow-600' href="/admin" >click here</a></span></p>
                 </div>
             </div>
         </div>

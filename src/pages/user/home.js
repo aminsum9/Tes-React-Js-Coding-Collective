@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Navigation from '../components/navigation';
+import Navigation from '../../components/user/navigation';
 import Modal from 'react-modal';
-import { IMAGE_URL } from '../config/url';
-import AttendanceServices from '../services/attendanceServices';
+import { IMAGE_URL } from '../../config/url';
+import AttendanceServices from '../../services/user/attendanceServices';
 import Webcam from 'react-webcam';
 import moment from 'moment';
-import ShiftServices from '../services/shiftServices';
+import ShiftServices from '../../services/user/shiftServices';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -1,18 +1,16 @@
-import { BASE_URL } from "../config/url"
+import { BASE_URL } from "../../config/url"
 
-class AttendanceServices {
+class AuthServices {
 
-    checkIn = (body) => {
-        var token = localStorage.getItem('token');
+    login = (body) => {
 
-        return fetch(BASE_URL + "attendance/check-in", {
+        return fetch(BASE_URL + "auth/login", {
             headers: {
                 "Accept": "*/*",
-                // "Content-Type": "multipart/form-data",
-                "Authorization": "Bearer "+token
+                "Content-Type": "application/json"
             },
             method: "POST",
-            body: body
+            body: JSON.stringify(body)
         })
             .then(ress => ress.json())
             .then(ressJson => {
@@ -20,17 +18,15 @@ class AttendanceServices {
             })
     }
 
-    checkOut = (body) => {
-        var token = localStorage.getItem('token');
+    register = (body) => {
 
-        return fetch(BASE_URL + "attendance/check-out", {
+        return fetch(BASE_URL + "auth/register", {
             headers: {
                 "Accept": "*/*",
-                // "Content-Type": "multipart/form-data",
-                "Authorization": "Bearer "+token
+                "Content-Type": "application/json"
             },
             method: "POST",
-            body: body
+            body: JSON.stringify(body)
         })
             .then(ress => ress.json())
             .then(ressJson => {
@@ -38,40 +34,41 @@ class AttendanceServices {
             })
     }
 
-    getAttendances = (body) => {
+    update = (body) => {
         var token = localStorage.getItem('token');
 
-        return fetch(BASE_URL + `attendance?page=${body?.page || 1}&limit=${body?.limit || 10}`, {
-            headers: {
-                "Accept": "*/*",
-                "Content-Type": "application/json",
-                "Authorization": "Bearer "+token
-            },
-            method: "GET",
-        })
-            .then(ress => ress.json())
-            .then(ressJson => {
-                return ressJson;
-            })
-    }
-
-    checkAttendance = () => {
-        var token = localStorage.getItem('token');
-
-        return fetch(BASE_URL + "attendance/check-attendance", {
+        return fetch(BASE_URL + "auth/update", {
             headers: {
                 "Accept": "*/*",
                 "Content-Type": "application/json",
                 "Authorization": "Bearer "+token
             },
             method: "POST",
+            body: JSON.stringify(body)
         })
             .then(ress => ress.json())
             .then(ressJson => {
+                return ressJson;
+            })
+    }
+    logout = () => {
+        var token = localStorage.getItem('token');
+
+        return fetch(BASE_URL + "auth/logout", {
+            headers: {
+                "Accept": "*/*",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer "+token
+            },
+            method: "POST"
+        })
+            .then(ress => ress.json())
+            .then(ressJson => {
+                console.log("ressJson: ",ressJson)
                 return ressJson;
             })
     }
 
 }
 
-export default AttendanceServices;
+export default AuthServices;
