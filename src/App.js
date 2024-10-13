@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/home.js";
 import Login from "./pages/login.js";
 import Register from "./pages/register.js";
+import AttendanceHistory from "./pages/attendance_histories.js";
 
 var localToken = localStorage.getItem('token');
 
@@ -12,6 +13,10 @@ if(localToken){
     {
       path: "/",
       element: <Home />
+    },
+    {
+      path: "/attendance-history",
+      element: <AttendanceHistory />
     },
   ]);
 } else {
