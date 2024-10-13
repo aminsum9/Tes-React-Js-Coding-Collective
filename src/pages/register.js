@@ -15,6 +15,7 @@ function Register(){
         new AuthServices().register(body).then( async ress => {
             if(ress.success){
                 localStorage.setItem('token',ress.data.token);
+                localStorage.setItem('auth',JSON.stringify(ress.data.user));
                 window.location.href = '/';
             }
         })

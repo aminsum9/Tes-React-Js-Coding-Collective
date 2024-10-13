@@ -12,6 +12,7 @@ function Navigation() {
             <div className='w-full flex-col items-start justify-start text-start pt-4 px-3'  >
                 <ItemNav title="Dashboard" route="/" />
                 <ItemNav title="Attendance History" route="/attendance-history" />
+                <ItemNav title="Update Profile" route="/update-profile" />
                 <LogOutButton />
             </div>
         </div>
@@ -35,9 +36,11 @@ function LogOutButton() {
             if(ress.success)
             {
                 localStorage.removeItem('token');
+                localStorage.removeItem('auth');
                 window.location.href = '/';
             } else {
                 localStorage.removeItem('token');
+                localStorage.removeItem('auth');
                 window.location.href = '/';
             }
         })

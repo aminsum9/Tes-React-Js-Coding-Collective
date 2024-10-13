@@ -34,11 +34,14 @@ class AuthServices {
             })
     }
 
-    register = (body) => {
-        return fetch(BASE_URL + "auth/register", {
+    update = (body) => {
+        var token = localStorage.getItem('token');
+
+        return fetch(BASE_URL + "auth/update", {
             headers: {
                 "Accept": "*/*",
                 "Content-Type": "application/json",
+                "Authorization": "Bearer "+token
             },
             method: "POST",
             body: JSON.stringify(body)

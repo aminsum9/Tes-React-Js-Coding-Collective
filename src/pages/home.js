@@ -40,7 +40,7 @@ function Home() {
         getShifts();
         getMyLocation();
         getCurrentTimeZone();
-        handleCheckCheckIn();
+        handleCheckTodayAttendance();
     }, []);
 
     const getCurrentTimeZone = () => {
@@ -88,7 +88,7 @@ function Home() {
         })
     }
 
-    const handleCheckCheckIn = () => {
+    const handleCheckTodayAttendance = () => {
 
         new AttendanceServices().checkAttendance().then(ress => {
             if (ress.success) {

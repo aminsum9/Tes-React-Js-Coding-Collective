@@ -10,10 +10,9 @@ function Login() {
         var body = {email,password}
 
         new AuthServices().login(body).then( async ress => {
-
-            console.log("ress: ",ress)
             if(ress.success){
                 localStorage.setItem('token',ress.data.token);
+                localStorage.setItem('auth',JSON.stringify(ress.data.user));
                 window.location.href = '/';
             }
         })
