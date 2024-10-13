@@ -11,8 +11,7 @@ function NavigationAdmin() {
                 <h3 className='text-4xl font-bold text-white' >Attendance</h3>
             </div>
             <div className='w-full flex-col items-start justify-start text-start pt-4 px-3'  >
-                <ItemNav title="Dashboard" route="/" />
-                <ItemNav title="Attendance History" route="/attendance-history" />
+                <ItemNav title="Attendance History" route="/" />
                 <ItemNav title="Report" route="/report" />
                 <ItemNav title="Update Profile" route="/update-profile" />
                 <LogOutButton />

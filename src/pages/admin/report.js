@@ -35,7 +35,7 @@ function ReportAdmin() {
              <ToastContainer />
             <NavigationAdmin />
             <div className="w-4/5 p-4">
-                <h3 className='font-bold text-3xl' >Today Attendance</h3>
+                <h3 className='font-bold text-3xl' >Report</h3>
                 <div className='flex flex-row' >
                     {/*  */}
                 </div>

@@ -48,7 +48,8 @@ function AttendanceHistoryAdmin() {
                         <thead className='w-full' >
                             <tr className='w-full flex flex-row' >
                                 <th className="py-3 w-1/12 text-center text-xs font-medium text-gray-500 uppercase dark:text-neutral-500" >No</th>
-                                <th className="py-3 w-3/12 text-center text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"  >Shift</th>
+                                <th className="py-3 w-2/12 text-center text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"  >User Name</th>
+                                <th className="py-3 w-2/12 text-center text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"  >Shift</th>
                                 <th className=" py-3 w-4/12 text-center text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"  >Check In Date</th>
                                 <th className="py-3 w-4/12 text-center text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"  >Check Out Date</th>
                             </tr>
@@ -63,7 +64,8 @@ function AttendanceHistoryAdmin() {
                                     }}
                                     className="w-full flex flex-row cursor-pointer odd:bg-white even:bg-gray-100 dark:odd:bg-neutral-900 dark:even:bg-neutral-800" >
                                     <td className="w-1/12 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200" >{no}</td>
-                                    <td className="w-3/12 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 " >{item.shift.name || '-'}</td>
+                                    <td className="w-2/12 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 " >{item.user.name || '-'}</td>
+                                    <td className="w-2/12 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 " >{item.shift.name || '-'}</td>
                                     <td className="w-4/12 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200" >{moment(item.check_in_date).format("DD MMMM YYYY") + " at " + item.check_in_time + '(' + item.check_in_timezone + ')'}</td>
                                     <td className="w-4/12 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200" >{moment(item.check_out_date).format("DD MMMM YYYY") + " at " + (item.check_out_time || '-') + '(' + item.check_out_timezone + ')'}</td>
 
@@ -194,14 +196,15 @@ function AttendanceHistoryAdmin() {
                     </button>
                     <h3 className='font-bold text-3xl' >Detail</h3>
                     <br />
-                    <input disabled value={itemDetail?.shift?.name} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Shift" />
+                    <input disabled value={"User Name: " + itemDetail?.user?.name} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Shift" />
+                    <input disabled value={"Shift Name: "+itemDetail?.shift?.name} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Shift" />
                     <h3 className='text-bold text-xl py-2' >Check In</h3>
                     <input disabled value={(itemDetail?.check_in_date ? "Check In : " + moment(itemDetail?.check_in_date).format('DD MMMM YYYY') : '-') + " at " + itemDetail?.check_in_time + ' (' + itemDetail.check_in_timezone + ')'} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="check in date" />
-                    <input disabled value={"Location: " + itemDetail.check_in_location} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="check in location" />
+                    <input disabled value={"Location: " + itemDetail.check_in_location + ' (' + itemDetail.check_in_latitude + ',' + itemDetail.check_in_longitude + ')'} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="check in location" />
                     <textarea disabled value={"Description: " + itemDetail.check_in_desc} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="check in desc" />
                     <h3 className='text-bold text-xl py-2' >Check Out</h3>
                     <input disabled value={(itemDetail?.check_out_date ? "Check Out : " + moment(itemDetail?.check_out_date).format('DD MMMM YYYY') : '-') + " at " + itemDetail?.check_out_time + ' (' + itemDetail.check_in_timezone + ')'} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="check out date" />
-                    <input disabled value={"Location: " + itemDetail.check_out_location} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="check out location" />
+                    <input disabled value={"Location: " + itemDetail.check_out_location + ' (' + itemDetail.check_out_latitude + ',' + itemDetail.check_out_longitude + ')'} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="check out location" />
                     <textarea disabled value={"Description: " + itemDetail.check_out_desc} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="check in desc" />
 
                 </div>

@@ -22,12 +22,12 @@ if (localToken) {
 
   if (authStorage?.role == "Admin") {
     var App = createBrowserRouter([
+      // {
+      //   path: "/",
+      //   element: <HomeAdmin />
+      // },
       {
         path: "/",
-        element: <HomeAdmin />
-      },
-      {
-        path: "/attendance-history",
         element: <AttendanceHistoryAdmin />
       },
       {
