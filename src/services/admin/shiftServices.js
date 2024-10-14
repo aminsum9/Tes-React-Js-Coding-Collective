@@ -21,12 +21,13 @@ class ShiftServicesAdmin {
     addShift = (body) => {
         var token = localStorage.getItem('token');
 
-        return fetch(BASE_URL + `shift/add`, {
+        return fetch(BASE_URL + `shift/admin/add`, {
             headers: {
                 "Accept": "*/*",
                 "Content-Type": "application/json",
                 "Authorization": "Bearer "+token
             },
+            method: 'POST',
             body: JSON.stringify(body)
         })
             .then(ress => ress.json())

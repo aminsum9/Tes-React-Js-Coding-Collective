@@ -61,7 +61,7 @@ function ShiftAdmin() {
             desc: desc,
         }
 
-        new ShiftServicesAdmin(body).addShift(ress => {
+        new ShiftServicesAdmin().addShift(body).then(ress => {
             if (ress.success) {
                 window.location.href = '/shift';
             }
