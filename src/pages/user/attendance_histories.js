@@ -17,7 +17,7 @@ const videoConstraints = {
 
 function AttendanceHistory() {
     var [page, setPage] = React.useState(1);
-    var [perPage, setTotalPages] = React.useState(3);
+    var [perPage, setTotalPages] = React.useState(10);
     var [totalPages, setTotalPages] = React.useState(0);
     var [data, setAttendances] = React.useState([]);
 

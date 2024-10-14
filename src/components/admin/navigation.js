@@ -12,6 +12,7 @@ function NavigationAdmin() {
             </div>
             <div className='w-full flex-col items-start justify-start text-start pt-4 px-3'  >
                 <ItemNav title="Attendance History" route="/" />
+                <ItemNav title="Shift" route="/shift" />
                 <ItemNav title="Report" route="/report" />
                 <ItemNav title="Update Profile" route="/update-profile" />
                 <LogOutButton />

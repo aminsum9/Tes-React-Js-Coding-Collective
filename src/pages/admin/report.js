@@ -88,7 +88,7 @@ function ReportAdmin() {
                             </div>
                             <div className='ms-1' >
                                 <p>Timezone:</p>
-                                <select defaultValue={0} id="shift" onChange={(e) => setTimezone(e.target.value)} className="mt-1 bg-gray-50 w-[200px] mb-1 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select defaultValue={''} id="shift" onChange={(e) => setTimezone(e.target.value)} className="mt-1 bg-gray-50 w-[200px] mb-1 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value={""}>-- Select Timezone --</option>
                                     {timezones.map((item, index) => {
                                         return <option key={index} value={item}>{item}</option>
@@ -97,14 +97,14 @@ function ReportAdmin() {
                             </div>
                             <div className='ms-1' >
                                 <p>Convert Timezone To:</p>
-                                <select defaultValue={0} id="shift" onChange={(e) => setConvertTimezone(e.target.value)} className="mt-1 bg-gray-50 w-[250px] mb-1 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select defaultValue={''} id="shift" onChange={(e) => setConvertTimezone(e.target.value)} className="mt-1 bg-gray-50 w-[250px] mb-1 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value={""}>-- Select TimeZone --</option>
                                     {timezones.map((item, index) => {
                                         return <option key={index} value={item}>{item}</option>
                                     })}
                                 </select>
                             </div>
-                            <button onClick={() => navToDownload()} className="w-full px-4 py-2 text-white uppercase tracking-wide no-underline text-sm font-semibold rounded shadow inline-block bg-teal-500 hover:bg-teal-600 mb-2" >
+                            <button onClick={() => navToDownload()} className="w-full ms-1 px-2 py-1 text-white uppercase tracking-wide no-underline text-sm font-semibold rounded shadow inline-block bg-teal-500 hover:bg-teal-600" >
                                 Download
                             </button>
                         </div>

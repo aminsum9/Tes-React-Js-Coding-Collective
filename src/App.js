@@ -6,7 +6,7 @@ import Login from "./pages/user/login.js";
 import Register from "./pages/user/register.js";
 import AttendanceHistory from "./pages/user/attendance_histories.js";
 import UpdateProfile from "./pages/user/update_profile.js";
-import HomeAdmin from "./pages/admin/home.js";
+import ShiftAdmin from "./pages/admin/shift.js";
 import LoginAdmin from "./pages/admin/login.js";
 import ReportAdmin from "./pages/admin/report.js";
 import AttendanceHistoryAdmin from "./pages/admin/attendance_histories.js";
@@ -22,13 +22,13 @@ if (localToken) {
 
   if (authStorage?.role == "Admin") {
     var App = createBrowserRouter([
-      // {
-      //   path: "/",
-      //   element: <HomeAdmin />
-      // },
       {
         path: "/",
         element: <AttendanceHistoryAdmin />
+      },
+      {
+        path: "/shift",
+        element: <ShiftAdmin />
       },
       {
         path: "/report",
