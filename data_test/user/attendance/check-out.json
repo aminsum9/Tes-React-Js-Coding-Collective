@@ -1,0 +1,11 @@
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTcyODg5MzkwMH0.3Hpa43qmnF_C8-aVXpwknJUv8lQVwtumwrUWoC7W6qY",
+    "attendance_id":"1",
+    "date":"2024-10-14",
+    "check_in":"16:00:00",
+    "location": "Yogyakarta",
+    "timezone": "Asia/Jakarta",
+    "latitude":"-7.78200361016393",
+    "longitude":"110.36705806369086",
+    "desc":"tes"
+}

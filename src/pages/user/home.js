@@ -45,7 +45,6 @@ function Home() {
 
     const getCurrentTimeZone = () => {
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        console.log("GMT Offset (in minutes): ", timeZone);
         setCurrentTimeZone(timeZone);
     }
 
@@ -61,8 +60,6 @@ function Home() {
 
                             if (location) {
                                 location.getCurrentPosition((position) => {
-                                    console.log("latitude: ", position.coords.latitude, "longitude: ", position.coords.longitude)
-
                                     setLatitude(position.coords.latitude)
                                     setLongitude(position.coords.longitude)
                                 }, (error) => {
@@ -180,8 +177,6 @@ function Home() {
         var fileImageCheckOut = dataURLtoFile(imageCheckOut, 'check-out.jpg', 'image/jpg');
 
         var formData = new FormData();
-
-        console.log("attendance id", data.id)
 
         formData.append('attendance_id', data.id)
         formData.append('photo', fileImageCheckOut)
