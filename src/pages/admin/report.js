@@ -123,9 +123,13 @@ function ReportAdmin() {
                                                     <p className='text-m font-bold'>{index + 1}. {item?.shift?.name} ({item?.shift?.start_time} - {item?.shift?.end_time})</p>
                                                     <div className='ms-5' >
                                                         <p className="text-m">Check In: {moment(item.check_in_date).format('dddd, DD MMMM YYYY')} at {item.check_in_time} ({item.check_in_timezone})</p>
-                                                        <p className="text-m" >Check Out: {moment(item.check_out_date).format('dddd, DD MMMM YYYY')} at {item.check_out_time} ({item.check_out_timezone})</p>
+                                                        {item.check_out_time && (
+                                                            <p className="text-m" >Check Out: {moment(item.check_out_date).format('dddd, DD MMMM YYYY')} at {item.check_out_time} ({item.check_out_timezone})</p>
+                                                        )}
                                                         <p className="text-m" >Check In Location: {item?.check_in_location} ({item?.check_in_latitude},{item?.check_in_longitude})</p>
-                                                        <p className="text-m" >Check Out Location: {item?.check_out_location} ({item?.check_out_latitude},{item?.check_out_longitude})</p>
+                                                        {item?.check_out_location && (
+                                                            <p className="text-m" >Check Out Location: {item?.check_out_location} ({item?.check_out_latitude},{item?.check_out_longitude})</p>
+                                                        )}
                                                     </div>
                                                 </div>
                                             )

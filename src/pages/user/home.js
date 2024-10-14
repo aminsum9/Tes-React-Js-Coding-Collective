@@ -100,53 +100,52 @@ function Home() {
     function dataURLtoFile(dataurl, filename) {
         var arr = dataurl.split(','),
             mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[arr.length - 1]), 
-            n = bstr.length, 
+            bstr = atob(arr[arr.length - 1]),
+            n = bstr.length,
             u8arr = new Uint8Array(n);
-        while(n--){
+        while (n--) {
             u8arr[n] = bstr.charCodeAt(n);
         }
-        return new File([u8arr], filename, {type:mime});
+        return new File([u8arr], filename, { type: mime });
     }
 
     const handleCheckIn = () => {
-        if(!imageCheckIn){
+        if (!imageCheckIn) {
             toast("Photo required!")
             return;
         }
-        if(!selectedShift){
+        if (!selectedShift) {
             toast("Shift required!")
             return;
         }
-        if(!location){
+        if (!location) {
             toast("Location required!")
             return;
         }
-        if(!longitude){
+        if (!longitude) {
             toast("Longitude required!")
             return;
         }
-        if(!latitude){
+        if (!latitude) {
             toast("Latitude required!")
             return;
         }
-        var fileImageCheckIn = dataURLtoFile(imageCheckIn,'check-in.jpg','image/jpg');
+        var fileImageCheckIn = dataURLtoFile(imageCheckIn, 'check-in.jpg', 'image/jpg');
 
         var formData = new FormData();
 
-        formData.append('photo',fileImageCheckIn)
-        formData.append('shift_id',selectedShift)
-        formData.append('date',currentDate)
-        formData.append('check_in',currentTime)
-        formData.append('location',location)
-        formData.append('timezone',currentTimeZone)
-        formData.append('longitude',longitude)
-        formData.append('latitude',latitude)
-        formData.append('desc',desc)
+        formData.append('photo', fileImageCheckIn)
+        formData.append('shift_id', selectedShift)
+        formData.append('date', currentDate)
+        formData.append('check_in', currentTime)
+        formData.append('location', location)
+        formData.append('timezone', currentTimeZone)
+        formData.append('longitude', longitude)
+        formData.append('latitude', latitude)
+        formData.append('desc', desc)
 
         new AttendanceServices().checkIn(formData).then(ress => {
-            if(ress.success)
-            {
+            if (ress.success) {
                 alert("Check In Success");
                 window.location.href = '/'
             }
@@ -154,50 +153,49 @@ function Home() {
     }
 
     const handleCheckOut = () => {
-        if(!data.id){
+        if (!data.id) {
             toast("attendance_id required!")
             return;
         }
-        if(!imageCheckOut){
+        if (!imageCheckOut) {
             toast("Image Check Out required!")
             return;
         }
-        if(!data.shift_id){
+        if (!data.shift_id) {
             toast("Shift required!")
             return;
         }
-        if(!locationCheckOut){
+        if (!locationCheckOut) {
             toast("Location Check Out required!")
             return;
         }
-        if(!longitude){
+        if (!longitude) {
             toast("Longitude required!")
             return;
         }
-        if(!latitude){
+        if (!latitude) {
             toast("Latitude required!")
             return;
         }
-        var fileImageCheckOut = dataURLtoFile(imageCheckOut,'check-out.jpg','image/jpg');
+        var fileImageCheckOut = dataURLtoFile(imageCheckOut, 'check-out.jpg', 'image/jpg');
 
         var formData = new FormData();
 
-        console.log("attendance id",data.id)
+        console.log("attendance id", data.id)
 
-        formData.append('attendance_id',data.id)
-        formData.append('photo',fileImageCheckOut)
-        formData.append('shift_id',data.shift_id)
-        formData.append('date',currentDate)
-        formData.append('check_out',currentTime)
-        formData.append('location',locationCheckOut)
-        formData.append('timezone',currentTimeZone)
-        formData.append('longitude',longitude)
-        formData.append('latitude',latitude)
-        formData.append('desc',descCheckOut)
+        formData.append('attendance_id', data.id)
+        formData.append('photo', fileImageCheckOut)
+        formData.append('shift_id', data.shift_id)
+        formData.append('date', currentDate)
+        formData.append('check_out', currentTime)
+        formData.append('location', locationCheckOut)
+        formData.append('timezone', currentTimeZone)
+        formData.append('longitude', longitude)
+        formData.append('latitude', latitude)
+        formData.append('desc', descCheckOut)
 
         new AttendanceServices().checkOut(formData).then(ress => {
-            if(ress.success)
-            {
+            if (ress.success) {
                 alert("Check Out Success");
                 window.location.href = '/'
             }
@@ -207,7 +205,7 @@ function Home() {
 
     return (
         <div className="flex h-[100vh]">
-             <ToastContainer />
+            <ToastContainer />
             <Navigation />
             <div className="w-4/5 p-4">
                 <h3 className='font-bold text-3xl' >Today Attendance</h3>
@@ -284,25 +282,39 @@ function Home() {
                     </button>
                     <h3 className='font-bold text-3xl' >Check In</h3>
                     <br />
-                    <Webcam
-                        audio={false}
-                        height={200}
-                        screenshotFormat="image/jpeg"
-                        width={400}
-                        videoConstraints={videoConstraints}
-                    >
-                        {({ getScreenshot }) => (
+                    {imageCheckIn ? (
+                        <div>
+                            <img src={imageCheckIn} style={{ height: 200, width: 400 }} />
                             <button
                                 className="mt-3 px-3 py-1 min-w-[120px] text-center text-white bg-violet-600 border border-violet-600 rounded active:text-violet-500 hover:bg-transparent hover:text-violet-600 focus:outline-none focus:ring"
                                 onClick={() => {
-                                    const imageSrc = getScreenshot()
-                                    setImageCheckIn(imageSrc);
+                                    setImageCheckIn('');
                                 }}
                             >
-                                Capture photo
+                                Change photo
                             </button>
-                        )}
-                    </Webcam>
+                        </div>
+                    ) : (
+                        <Webcam
+                            audio={false}
+                            height={200}
+                            screenshotFormat="image/jpeg"
+                            width={400}
+                            videoConstraints={videoConstraints}
+                        >
+                            {({ getScreenshot }) => (
+                                <button
+                                    className="mt-3 px-3 py-1 min-w-[120px] text-center text-white bg-violet-600 border border-violet-600 rounded active:text-violet-500 hover:bg-transparent hover:text-violet-600 focus:outline-none focus:ring"
+                                    onClick={() => {
+                                        const imageSrc = getScreenshot()
+                                        setImageCheckIn(imageSrc);
+                                    }}
+                                >
+                                    Capture photo
+                                </button>
+                            )}
+                        </Webcam>
+                    )}
                     <input disabled value={"Date: " + currentDate} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Date" />
                     <input disabled value={"Time: " + currentTime} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Time" />
                     <label htmlFor="shift" className="mt-2block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Shift</label>
@@ -321,8 +333,8 @@ function Home() {
                     </button>
                 </div>
             </Modal>
-              {/* modal check out */}
-              <Modal
+            {/* modal check out */}
+            <Modal
                 isOpen={modalCheckOut}
                 style={modalCheckAttendanceStyles}
             >
@@ -334,29 +346,43 @@ function Home() {
                     </button>
                     <h3 className='font-bold text-3xl' >Check Out</h3>
                     <br />
-                    <Webcam
-                        audio={false}
-                        height={200}
-                        screenshotFormat="image/jpeg"
-                        width={400}
-                        videoConstraints={videoConstraints}
-                    >
-                        {({ getScreenshot }) => (
+                    {imageCheckOut ? (
+                        <div>
+                            <img src={imageCheckOut} style={{ height: 200, width: 400 }} />
                             <button
                                 className="mt-3 px-3 py-1 min-w-[120px] text-center text-white bg-violet-600 border border-violet-600 rounded active:text-violet-500 hover:bg-transparent hover:text-violet-600 focus:outline-none focus:ring"
                                 onClick={() => {
-                                    const imageSrc = getScreenshot()
-                                    setImageCheckOut(imageSrc);
+                                    setImageCheckOut('');
                                 }}
                             >
-                                Capture photo
+                                Change photo
                             </button>
-                        )}
-                    </Webcam>
+                        </div>
+                    ) : (
+                        <Webcam
+                            audio={false}
+                            height={200}
+                            screenshotFormat="image/jpeg"
+                            width={400}
+                            videoConstraints={videoConstraints}
+                        >
+                            {({ getScreenshot }) => (
+                                <button
+                                    className="mt-3 px-3 py-1 min-w-[120px] text-center text-white bg-violet-600 border border-violet-600 rounded active:text-violet-500 hover:bg-transparent hover:text-violet-600 focus:outline-none focus:ring"
+                                    onClick={() => {
+                                        const imageSrc = getScreenshot()
+                                        setImageCheckOut(imageSrc);
+                                    }}
+                                >
+                                    Capture photo
+                                </button>
+                            )}
+                        </Webcam>
+                    )}
                     <input disabled value={"Date: " + currentDate} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Date" />
                     <input disabled value={"Time: " + currentTime} className="mt-2 w-full mx-0 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Time" />
                     <label htmlFor="shift" className="mt-2block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Shift</label>
-                    <select value={data.shift_id} disabled id="shift" onChange={(e) => {}} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select value={data.shift_id} disabled id="shift" onChange={(e) => { }} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value={0}>-- Select shift --</option>
                         {shifts.map((item, index) => {
                             return <option key={index} value={item.id}>{item.name}</option>
