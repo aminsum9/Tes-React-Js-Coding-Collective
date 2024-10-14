@@ -1,5 +1,4 @@
 import * as React from 'react';
-import AuthServices from '../../services/user/authServices';
 import AuthServicesAdmin from '../../services/admin/authServices';
 
 function LoginAdmin() {

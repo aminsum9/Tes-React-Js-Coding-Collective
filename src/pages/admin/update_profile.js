@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Navigation from '../../components/user/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthServices from '../../services/admin/authServices';
@@ -7,8 +6,6 @@ import NavigationAdmin from '../../components/admin/navigation';
 
 
 function UpdateProfileAdmin() {
-    var [data, setData] = React.useState({});
-
     var [name, setName] = React.useState('');
     var [email, setEmail] = React.useState('');
     var [address, setAddress] = React.useState('');

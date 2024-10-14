@@ -6,8 +6,6 @@ import AuthServices from '../../services/user/authServices';
 
 
 function UpdateProfile() {
-    var [data, setData] = React.useState({});
-
     var [name, setName] = React.useState('');
     var [email, setEmail] = React.useState('');
     var [address, setAddress] = React.useState('');

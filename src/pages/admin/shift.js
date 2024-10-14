@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Modal from 'react-modal';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavigationAdmin from '../../components/admin/navigation';
 import ShiftServicesAdmin from '../../services/admin/shiftServices';
-import moment from 'moment';
 
 
 function ShiftAdmin() {

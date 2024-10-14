@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Navigation from '../../components/user/navigation';
 import Modal from 'react-modal';
 import AttendanceServices from '../../services/admin/attendanceServices';
 import moment from 'moment';
