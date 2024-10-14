@@ -49,7 +49,6 @@ class AuthServicesAdmin {
         })
             .then(ress => ress.json())
             .then(ressJson => {
-                console.log("ressJson: ",ressJson)
                 return ressJson;
             })
     }
